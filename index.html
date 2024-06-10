@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tus Finanzas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1 class="main-title">Tus Finanzas</h1> 
+        <h3 class="text-primary">Bienvenidos a la aplicación de la Universidad</h3>
+        <form @submit.prevent="addTransaction">
+            <input v-model="description" type="text" placeholder="Descripción" required>
+            <input v-model.number="amount" type="number" placeholder="Monto" required>
+            <select v-model="type">
+                <option value="income">Ingreso</option>
+                <option value="expense">Gasto</option>
+            </select>
+            <button type="submit">Agregar</button>
+        </form>
+        <h2>Historial de transacciones</h2>
+        <ul>
+            <li v-for="transaction in transactions" :key="transaction.id">
+                {{ transaction.description }} - {{ transaction.type }}: {{ transaction.amount }} €
+            </li>
+        </ul>
+        <h2>Gráfica de gastos</h2>
+        <div class="chart-container">
+            <canvas id="expensesChart"></canvas>
+        </div>
+        <div class="image-text-container">
+            <img src="presupuesto.png" alt="Descripción de la imagen" class="info-image">
+            <div class="info-text">
+                <h2>Información Adicional</h2>
+                <p>Esta aplicación te ayuda a llevar el control de tus gastos e ingresos de una manera óptima, esta desarrollada por Brayan Ortegon Caicedo, para un laboratorio de la Universidad Unir.</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
